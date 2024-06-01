@@ -1,0 +1,24 @@
+.hero__card {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: repeat(12, 1fr);
+	background-color: var(--dark);
+	min-height: 256px;
+	max-height: 256px;
+	min-width: 192px;
+	max-width: 192px;
+	border-radius: 16px;
+	box-shadow: 8px 8px 41.5px rgba(26, 30, 31, 0.25);
+	cursor: pointer;
+	transition: scale .3s ease;
+}
+
+.hero__card:hover {
+	scale: .95;
+}
+
+.hero__card-text {
+	color: var(--white);
+	grid-column: 2 /12;
+	grid-row: 9 / 11;
+}
