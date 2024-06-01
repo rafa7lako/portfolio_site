@@ -1,36 +1,56 @@
-
 import mainImage from "/src/assets/VID_20240526_141451.mp4.00_03_42_20.33Still001.png";
-import Card from './components/Card'
 import "./App.css";
 
-import { motion } from 'framer-motion';
-import {useRef, useEffect, useState} from 'react';
-
+import CardCarousel from "./components/CardCarousel";
+import { CardContext } from "./store/card-context.jsx";
 
 const cardData = [
 	{
-		heading: 'heading',
-		paragraph: 'paragraph',
+		heading: "heading",
+		paragraph: "paragraph",
 	},
 	{
-		heading: 'heading2',
-		paragraph: 'paragraph2',
+		heading: "heading2",
+		paragraph: "paragraph2",
 	},
 	{
-		heading: 'heading',
-		paragraph: 'paragraph',
+		heading: "heading",
+		paragraph: "paragraph",
 	},
 	{
-		heading: 'heading2',
-		paragraph: 'paragraph2',
+		heading: "heading2",
+		paragraph: "paragraph2",
 	},
 ];
 
-
-
 function App() {
 	return (
-		<>
+		<CardContext.Provider
+			value={{
+				cards: [
+					{
+						heading: "heading",
+						paragraph: "paragraph",
+						key: 1,
+					},
+					{
+						heading: "heading2",
+						paragraph: "paragraph2",
+						key: 2,
+					},
+					{
+						heading: "heading",
+						paragraph: "paragraph",
+						key: 3,
+					},
+					{
+						heading: "heading2",
+						paragraph: "paragraph2",
+						key: 4,
+					},
+				],
+			}}
+		>
 			<section className="main">
 				<nav className="flex">
 					<div className="container">
@@ -65,39 +85,28 @@ function App() {
 
 				<div className="hero container">
 					{/* <div className="hero__main flex"> */}
-						<div className="hero__text">
-							<p className="hero__paragraph-one">
-								Nice to meet you! I’m Rafał.
-							</p>
-							<h1 className="hero__heading">let’s design some stories</h1>
-							<p className="hero__paragraph-two">
-								I’m a Web-Developer and Graphic Designer. View my projects on
-								the right!
-							</p>
-							<div>
-								<a className="hero__button" href="#">
-									Contact
-								</a>
-							</div>
+					<div className="hero__text">
+						<p className="hero__paragraph-one">Nice to meet you! I’m Rafał.</p>
+						<h1 className="hero__heading">let’s design some stories</h1>
+						<p className="hero__paragraph-two">
+							I’m a Web-Developer and Graphic Designer. View my projects on the
+							right!
+						</p>
+						<div>
+							<a className="hero__button" href="#">
+								Contact
+							</a>
 						</div>
-						<motion.div className="hero__carousel">
-							<motion.ul drag='x' dragConstraints={{ right:0}} className="hero__carousel-inner" >
-							{cardData.map((card)=>{
-								return <Card headingTitle={card.heading} paragraphText={card.paragraph} />;
-							})}
+					</div>
+					<CardCarousel />
 
-							{/* <Card headingTitle= 'eee' paragraphText='rerewh' />; */}
-					
-						</motion.ul>
-						</motion.div>
-						
 					{/* </div> */}
 					<div className="hero__img">
 						<img src={mainImage} alt="Rafał Łakomski" />
 					</div>
 				</div>
 			</section>
-		</>
+		</CardContext.Provider>
 	);
 }
 
