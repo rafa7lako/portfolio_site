@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import "./CardCarousel.css";
 
 const CardCarousel = () => {
-	const cardCtx = useContext(CardContext);
+	const { cards } = useContext(CardContext);
 
 	return (
 		<motion.div className="hero__carousel">
@@ -15,10 +15,11 @@ const CardCarousel = () => {
 				dragConstraints={{ right: 0 }}
 				className="hero__carousel-inner"
 			>
-				{cardCtx.cards.map((card) => {
+				{cards.map((card) => {
 					return (
 						<Card
 							key={card.key}
+							cardKey={card.key}
 							headingTitle={card.heading}
 							paragraphText={card.paragraph}
 						/>

@@ -1,10 +1,14 @@
-import React from "react";
+import {useContext} from "react";
+import { CardContext } from "../store/card-context";
 import './Card.css';
 
 
-const Card = ({headingTitle, paragraphText}) => {
+const Card = ({cardKey, headingTitle, paragraphText}) => {
+
+	const { cardClickHandlerFunction } = useContext(CardContext)
+
 	return (
-		<li className="hero__card">
+		<li className="hero__card" onClick={() => {cardClickHandlerFunction(cardKey)}}>
 			<div className="hero__card-text">
 				<h3>{headingTitle}</h3>
 				<p>{paragraphText}</p>
