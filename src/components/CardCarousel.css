@@ -1,9 +1,10 @@
 .hero__carousel {
-	grid-column: 9 / -1;
+	grid-column: 8 / -1;
 	grid-row: 7/12;
 	z-index: 2;
 	overflow: hidden;
 	/* overflow:scroll; */
+	mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
 }
 
 .hero__carousel-inner {

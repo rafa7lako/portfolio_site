@@ -3,15 +3,17 @@ import { CardContext } from "../store/card-context.jsx";
 
 import mainImage from "../assets/VID_20240526_141451.mp4.00_03_42_20.33Still001.png";
 
-
 import CardCarousel from "./CardCarousel";
 import HeroText from "./HeroText.jsx";
 
 export const MainSection = () => {
-	const { mainBackground } = useContext(CardContext);
+	const { isCardClicked, mainBackground } = useContext(CardContext);
 
 	return (
-		<section className="main" style={{ backgroundImage: `url(${mainBackground})` }}>
+		<section
+			className="main"
+			style={{ backgroundImage: `url(${mainBackground})` }}
+		>
 			<nav className="flex">
 				<div className="container">
 					<div className="navigation flex">
@@ -47,8 +49,8 @@ export const MainSection = () => {
 				<HeroText />
 				<CardCarousel />
 
-				<div className="hero__img">
-					<img src={mainImage} alt="Rafał Łakomski" />
+				<div className="hero__img" style={{ display: isCardClicked !== '' ? 'none' : 'flex' }}>
+					<img  src={mainImage} alt="Rafał Łakomski" />
 				</div>
 			</div>
 		</section>

@@ -22,6 +22,7 @@ const CardCarousel = () => {
 							cardKey={card.key}
 							headingTitle={card.heading}
 							paragraphText={card.paragraph}
+							image={card.backgroundImg}
 						/>
 					);
 				})}
