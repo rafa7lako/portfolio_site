@@ -1,8 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect, useRef } from "react";
 
-import bgMainImage from '../assets/alexis-fauvet-vwGnTLkbgpI-unsplash.jpg';
-import image1 from '../assets/david-marcu-78A265wPiO4-unsplash.jpg';
-import image2 from '../assets/aleks-dahlberg-r30_L13HFhU-unsplash.jpg';
+import bgMainImage from "../assets/alexis-fauvet-vwGnTLkbgpI-unsplash.jpg";
+import image1 from "../assets/david-marcu-78A265wPiO4-unsplash.jpg";
+import image2 from "../assets/aleks-dahlberg-r30_L13HFhU-unsplash.jpg";
 
 export const CardContext = createContext({
 	cards: [
@@ -36,6 +36,12 @@ export const CardContext = createContext({
 	headingHero: undefined,
 	paragraphTwoHero: undefined,
 	mainBackground: undefined,
+	carouselRef: undefined,
+	secondaryCarouselRef: undefined,
+	carouselWidthData: undefined,
+	// carouselScrollRight: () => {},
+	// carouselScrollLeft: () => {},
+	setScrollPosition: () => {}, 
 });
 
 export default function CardContextProvider({ children }) {
@@ -67,6 +73,17 @@ export default function CardContextProvider({ children }) {
 	];
 
 	const [cardClicked, setCardClicked] = useState("");
+	const [carouselWidth, setCarouselWidth] = useState(0);
+	const [scrollPosition, setScrollPosition] = useState(0);
+
+	const carousel = useRef();
+	const secondaryCarousel = useRef();
+	
+	useEffect(() => {
+		setCarouselWidth(
+			carousel.current.scrollWidth - carousel.current.offsetWidth + 100
+		);
+	}, []);
 
 	const cardClickHandler = (cardKey) => {
 		setCardClicked(cardKey);
@@ -87,6 +104,27 @@ export default function CardContextProvider({ children }) {
 		mainBG = cardData[cardClicked].backgroundImg;
 	}
 
+	// Carousel Buttons Functions
+	// const scrollCarouselRight = () => {
+	// 	let newPosition = 0;
+	// 	if (scrollPosition < 0) {
+	// 		newPosition = scrollPosition + 208;
+	// 		setScrollPosition(newPosition);
+	// 		secondaryCarousel.current.style.transform = `translateX(${newPosition}px)`;
+	// 	}
+
+	// 	console.log(newPosition);
+		
+	// };
+
+	// const scrollCarouselLeft = () => {
+	// 	const newPosition = scrollPosition - 208;
+	// 	setScrollPosition(newPosition);
+	// 	secondaryCarousel.current.style.transform = `translateX(${newPosition}px)`;
+	// 	console.log(newPosition);
+		
+	// };
+
 	const ctxValue = {
 		cards: cardData,
 		cardClickHandlerFunction: cardClickHandler,
@@ -94,6 +132,12 @@ export default function CardContextProvider({ children }) {
 		headingHero: heroHeading,
 		paragraphTwoHero: heroParagraphTwo,
 		mainBackground: mainBG,
+		carouselRef: carousel,
+		secondaryCarouselRef: secondaryCarousel,
+		carouselWidthData: carouselWidth,
+		// carouselScrollRight: scrollCarouselRight,
+		// carouselScrollLeft: scrollCarouselLeft,
+		setScrollPosition: setScrollPosition,
 	};
 
 	return (

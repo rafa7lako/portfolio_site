@@ -128,3 +128,13 @@ a {
 	background-color: #a53630;
 }
 
+.carousel__scroll-buttons {
+	grid-column: 11/12;
+	grid-row: 6/7;
+	z-index: 3;
+}
+
+.carousel__scroll-buttonTwo{
+	cursor: pointer;
+}
+

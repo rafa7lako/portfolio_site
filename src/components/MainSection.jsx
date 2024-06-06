@@ -6,6 +6,7 @@ import mainImage from "../assets/VID_20240526_141451.mp4.00_03_42_20.33Still001.
 import CardCarousel from "./CardCarousel";
 import HeroText from "./HeroText.jsx";
 
+
 export const MainSection = () => {
 	const { isCardClicked, mainBackground } = useContext(CardContext);
 
