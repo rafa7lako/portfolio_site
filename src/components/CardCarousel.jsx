@@ -1,39 +1,78 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Card from "./Card.jsx";
 import { CardContext } from "../store/card-context";
-import { motion, useMotionValue, useAnimation, useTransform } from "framer-motion";
+import {
+	motion,
+	useMotionValue,
+} from "framer-motion";
 
 import "./CardCarousel.css";
 
+const DRAG_BUFFER = 50;
+
 const CardCarousel = () => {
+	const [dragging, setDragging] = useState(false);
+	const [cardIndex, setCardIndex] = useState(0);
+
 	const {
 		cards,
 		carouselRef,
 		secondaryCarouselRef,
-		carouselWidthData,
-		setScrollPosition,
 	} = useContext(CardContext);
 
-	const x = useMotionValue(0);
+	const dragX = useMotionValue(0);
 
 
+	const onDragStart = () => {
+		setDragging(true)
+		console.log('start');
+	}
 
+	const onDragEnd = () => {
+		setDragging(false)
 
+		const x = dragX.get();
+
+		if(x <= -DRAG_BUFFER && cardIndex < cards.length - 1) {
+			setCardIndex((pv)=> pv +1 )
+		} else if (x >= DRAG_BUFFER && cardIndex > 0){
+			setCardIndex((pv) => pv - 1)
+		}
+	}
+
+	const scrollRightClick = () => {
+		if (cardIndex < cards.length - 1)
+		setCardIndex((pv)=> pv + 1 )
+		console.log(cardIndex);
+	}
+	const scrollLeftClick = () => {
+		if(cardIndex > 0) {
+			setCardIndex((pv)=> pv - 1 )
+		}
+		
+		console.log(cardIndex);
+	}
 	// setScrollPosition(x.current)
 
 	return (
 		<div className="hero__carousel-wrapper">
-			<button className="carousel__button-left">L</button>
-			<button className="carousel__button-right">R</button>
+			<button className="carousel__button-left" onClick={scrollLeftClick}>L</button>
+			<button className="carousel__button-right" onClick={scrollRightClick}>R</button>
 
 			<motion.div ref={carouselRef} className="hero__carousel">
 				<motion.ul
 					ref={secondaryCarouselRef}
 					drag="x"
-					
-					dragConstraints={{ right: 0, left: -carouselWidthData }}
+					dragConstraints={{ right: 0, left: 0 }}
+					style={{ 
+						x: dragX
+					 }} 
+					animate={{
+						translateX: `-${cardIndex * 25}%`,
+					}}
+					onDragStart={onDragStart}
+					onDragEnd={onDragEnd}
 					className="hero__carousel-inner"
-					style={{ x }} // Bind the motion value
 				>
 					{cards.map((card) => {
 						return (
