@@ -1,0 +1,21 @@
+.navigation {
+	margin-top: 1rem;
+	justify-content: space-between;
+}
+
+.navigation__logo {
+	font-family: var(--font-antonio);
+	text-transform: uppercase;
+	color: var(--dark);
+	font-size: var(--size24);
+}
+
+.nav__second {
+	justify-content: space-between;
+}
+
+.nav__second-item {
+	color: var(--dark);
+	font-size: var(--size20);
+	margin-left: 3rem;
+}

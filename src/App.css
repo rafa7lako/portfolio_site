@@ -32,27 +32,7 @@ a {
 	
 }
 
-.navigation {
-	margin-top: 1rem;
-	justify-content: space-between;
-}
 
-.navigation__logo {
-	font-family: var(--font-antonio);
-	text-transform: uppercase;
-	color: var(--dark);
-	font-size: var(--size24);
-}
-
-.nav__second {
-	justify-content: space-between;
-}
-
-.nav__second-item {
-	color: var(--dark);
-	font-size: var(--size20);
-	margin-left: 3rem;
-}
 
 .hero {
 	height: 100vh;
@@ -79,62 +59,4 @@ a {
 
 
 
-
-/* .hero__main {
-	justify-content: space-between;
-	grid-column: 1 / span 12;
-	grid-row: 10/11;
-	z-index: 2;
-} */
-
-.hero__text {
-	grid-column: 1 / 6;
-	grid-row: 7/12;
-	z-index: 2;
-}
-
-.hero__paragraph-one {
-	font-size: var(--size20);
-	font-weight: 600;
-	color: var(--white);
-	margin-bottom: -0.5rem;
-}
-
-.hero__heading {
-	/* margin-bottom: 0.6rem; */
-	font-family: var(--font-antonio);
-	text-transform: uppercase;
-	font-size: var(--size48);
-	color: var(--white);
-}
-
-.hero__paragraph-two {
-	margin-bottom: 2rem;
-	font-size: var(--size20);
-	color: var(--white);
-}
-
-.hero__button {
-	padding: 0.5em 2em;
-	background-color: var(--red);
-	color: var(--white);
-	cursor: pointer;
-	font-size: var(--size24);
-	transition: backgound-color 0.3s ease;
-}
-
-.hero__button:hover,
-.hero__button:focus {
-	background-color: #a53630;
-}
-
-.carousel__scroll-buttons {
-	grid-column: 11/12;
-	grid-row: 6/7;
-	z-index: 3;
-}
-
-.carousel__scroll-buttonTwo{
-	cursor: pointer;
-}
 

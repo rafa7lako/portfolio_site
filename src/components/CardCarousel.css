@@ -8,6 +8,7 @@
 }
 
 .hero__carousel {
+	padding: 0 3rem;
 	grid-column: 1 / span 12;
 	grid-row: 1 / span 12;
 	display: flex;
@@ -27,12 +28,19 @@
 	gap: 1rem;
 }
 
-
 .carousel__button-left,
 .carousel__button-right {
 	padding: 1rem;
 	z-index: 4;
 	cursor: pointer;
+}
+
+.carousel__button {
+	transition: color .3s ease;
+}
+
+.carousel__button:hover, .carousel__button:focus {
+	color: #bcbbbb;
 }
 
 .carousel__button-left {
@@ -42,4 +50,10 @@
 .carousel__button-right {
 	grid-column: 12 / 13;
 	grid-row: 6/7;
+}
+
+.fa-chevron-left,
+.fa-chevron-right {
+	color: var(--white);
+	font-size: 2rem;
 }

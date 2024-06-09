@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { CardContext } from "../store/card-context";
 
+import './HeroText.css'
+
 const HeroText = () => {
 
     const { cards, isCardClicked, headingHero, paragraphTwoHero } = useContext(CardContext);

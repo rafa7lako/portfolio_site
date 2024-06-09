@@ -39,9 +39,10 @@ export const CardContext = createContext({
 	carouselRef: undefined,
 	secondaryCarouselRef: undefined,
 	carouselWidthData: undefined,
-	// carouselScrollRight: () => {},
-	// carouselScrollLeft: () => {},
-	setScrollPosition: () => {}, 
+	setScrollPosition: () => {},
+	isCardGrabbedData: () => {},
+	cardGrabbedData: false
+
 });
 
 export default function CardContextProvider({ children }) {
@@ -75,10 +76,14 @@ export default function CardContextProvider({ children }) {
 	const [cardClicked, setCardClicked] = useState("");
 	const [carouselWidth, setCarouselWidth] = useState(0);
 	const [scrollPosition, setScrollPosition] = useState(0);
+	const [cardGrabbed, isCardGrabbed] = useState(false)
+
 
 	const carousel = useRef();
 	const secondaryCarousel = useRef();
-	
+
+
+
 	useEffect(() => {
 		setCarouselWidth(
 			carousel.current.scrollWidth - carousel.current.offsetWidth + 100
@@ -104,26 +109,17 @@ export default function CardContextProvider({ children }) {
 		mainBG = cardData[cardClicked].backgroundImg;
 	}
 
-	// Carousel Buttons Functions
-	// const scrollCarouselRight = () => {
-	// 	let newPosition = 0;
-	// 	if (scrollPosition < 0) {
-	// 		newPosition = scrollPosition + 208;
-	// 		setScrollPosition(newPosition);
-	// 		secondaryCarousel.current.style.transform = `translateX(${newPosition}px)`;
-	// 	}
+	const cardGrabHandler = (event) => {
+		if (event.type === 'mousedown'){
+			isCardGrabbed(true)
+		} else if (event.type === 'mouseup' || event.type === 'mouseleave'){
+			isCardGrabbed(false)
+		}
+	}
 
-	// 	console.log(newPosition);
-		
-	// };
+	
 
-	// const scrollCarouselLeft = () => {
-	// 	const newPosition = scrollPosition - 208;
-	// 	setScrollPosition(newPosition);
-	// 	secondaryCarousel.current.style.transform = `translateX(${newPosition}px)`;
-	// 	console.log(newPosition);
-		
-	// };
+	
 
 	const ctxValue = {
 		cards: cardData,
@@ -135,9 +131,9 @@ export default function CardContextProvider({ children }) {
 		carouselRef: carousel,
 		secondaryCarouselRef: secondaryCarousel,
 		carouselWidthData: carouselWidth,
-		// carouselScrollRight: scrollCarouselRight,
-		// carouselScrollLeft: scrollCarouselLeft,
 		setScrollPosition: setScrollPosition,
+		isCardGrabbedData: cardGrabHandler,
+		cardGrabbedData: cardGrabbed,
 	};
 
 	return (
